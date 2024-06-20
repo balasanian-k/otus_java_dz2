@@ -1,6 +1,6 @@
 package animals;
 
-import validators.NumberValidator;
+import validators.PatternValidator;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -11,7 +11,7 @@ public abstract class Animal {
     private String name = "";
     private String color = "";
 
-    private NumberValidator numberValidator = new NumberValidator();
+    private PatternValidator patternValidator = new PatternValidator();
 
     public void setName(String name) {
         this.name = name;
@@ -21,15 +21,15 @@ public abstract class Animal {
         int data = -1;
         while(true) {
             String ageStr = scanner.next();
-            if(numberValidator.isNumber(ageStr, Pattern.compile("^\\d+$"))) {
+            if(patternValidator.isPattern(ageStr, Pattern.compile("^\\d+$"))) {
                 data = Integer.parseInt(ageStr);
                 if(data > 50 || data <=0) {
-                    System.out.println("Ошибочно введен возраст животного");
+                    System.out.println("Ошибка! Введите числовое значение от 0 до 50");
                     continue;
                 }
                 break;
             }
-            System.out.println("Ошибочно введен возраст животного");
+            System.out.println("Ошибка! Введите числовое значение от 0 до 50");
         }
         return data;
     }

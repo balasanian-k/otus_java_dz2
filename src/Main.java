@@ -4,7 +4,7 @@ import data.AnimalData;
 import data.CommandsData;
 import factory.AnimalFactory;
 import validators.DataValidator;
-import validators.NumberValidator;
+import validators.PatternValidator;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -17,7 +17,7 @@ public class Main {
         List<Animal> animalsList = new ArrayList<>();
         AnimalFactory animalFactory = new AnimalFactory();
         DataValidator commandValidator = new DataValidator();
-        NumberValidator numberValidator = new NumberValidator();
+        PatternValidator patternValidator = new PatternValidator();
 
         while(true) {
             System.out.println("Ввeдите команду из указанных: add/list/exit");
@@ -60,11 +60,11 @@ public class Main {
                         System.out.println("Введите окрас животного");
                         String colorStr = scanner.next();
 
-                        if (numberValidator.isNumber(colorStr, Pattern.compile("^[а-яА-Я]+$"))) {
+                        if (patternValidator.isPattern(colorStr, Pattern.compile("^[а-яА-Я]+$"))) {
                             animal.setColor(colorStr);
                             break;
                         }
-                        System.out.println("Вы ввели неверный окрас животного");
+                        System.out.println("Ошибка! Язык ввода: русский");
                     }
 
                     animalsList.add(animal);
